@@ -7,12 +7,12 @@
     "module": true,
     "resourceType": "script"
   },
-  "/home/it-lap3/Documents/Personal/Project/MBC_Jewel/node_modules/nuxt/dist/app/entry.js": {
+  "/home/it-lap4/Music/swetha/WEB/MBC_Jewel/node_modules/nuxt/dist/app/entry.js": {
     "resourceType": "script",
     "module": true,
     "prefetch": true,
     "preload": true,
     "isEntry": true,
-    "file": "/home/it-lap3/Documents/Personal/Project/MBC_Jewel/node_modules/nuxt/dist/app/entry.js"
+    "file": "/home/it-lap4/Music/swetha/WEB/MBC_Jewel/node_modules/nuxt/dist/app/entry.js"
   }
 }

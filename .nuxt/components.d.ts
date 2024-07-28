@@ -4,7 +4,7 @@ type IslandComponent<T extends DefineComponent> = T & DefineComponent<{}, {refre
 interface _GlobalComponents {
       'AddJewelsMain': typeof import("../components/AddJewels/AddJewelsMain.vue")['default']
     'AddJewelsComponentsAddJewel': typeof import("../components/AddJewels/components/AddJewel.vue")['default']
-    'AddJewelsComponentsPreviewImage': typeof import("../components/AddJewels/components/PreviewImage.vue")['default']
+    'AddJewelsComponentsPreview': typeof import("../components/AddJewels/components/preview.vue")['default']
     'ResolutionCard': typeof import("../components/ResolutionCard/Card.vue")['default']
     'StaticContentFooter': typeof import("../components/StaticContent/Footer.vue")['default']
     'NuxtWelcome': typeof import("../node_modules/nuxt/dist/app/components/welcome")['default']
@@ -32,7 +32,7 @@ interface _GlobalComponents {
     'NuxtRouteAnnouncer': IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
       'LazyAddJewelsMain': typeof import("../components/AddJewels/AddJewelsMain.vue")['default']
     'LazyAddJewelsComponentsAddJewel': typeof import("../components/AddJewels/components/AddJewel.vue")['default']
-    'LazyAddJewelsComponentsPreviewImage': typeof import("../components/AddJewels/components/PreviewImage.vue")['default']
+    'LazyAddJewelsComponentsPreview': typeof import("../components/AddJewels/components/preview.vue")['default']
     'LazyResolutionCard': typeof import("../components/ResolutionCard/Card.vue")['default']
     'LazyStaticContentFooter': typeof import("../components/StaticContent/Footer.vue")['default']
     'LazyNuxtWelcome': typeof import("../node_modules/nuxt/dist/app/components/welcome")['default']
@@ -74,7 +74,7 @@ declare module 'vue' {
 
 export const AddJewelsMain: typeof import("../components/AddJewels/AddJewelsMain.vue")['default']
 export const AddJewelsComponentsAddJewel: typeof import("../components/AddJewels/components/AddJewel.vue")['default']
-export const AddJewelsComponentsPreviewImage: typeof import("../components/AddJewels/components/PreviewImage.vue")['default']
+export const AddJewelsComponentsPreview: typeof import("../components/AddJewels/components/preview.vue")['default']
 export const ResolutionCard: typeof import("../components/ResolutionCard/Card.vue")['default']
 export const StaticContentFooter: typeof import("../components/StaticContent/Footer.vue")['default']
 export const NuxtWelcome: typeof import("../node_modules/nuxt/dist/app/components/welcome")['default']
@@ -102,7 +102,7 @@ export const NuxtIsland: typeof import("../node_modules/nuxt/dist/app/components
 export const NuxtRouteAnnouncer: IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
 export const LazyAddJewelsMain: typeof import("../components/AddJewels/AddJewelsMain.vue")['default']
 export const LazyAddJewelsComponentsAddJewel: typeof import("../components/AddJewels/components/AddJewel.vue")['default']
-export const LazyAddJewelsComponentsPreviewImage: typeof import("../components/AddJewels/components/PreviewImage.vue")['default']
+export const LazyAddJewelsComponentsPreview: typeof import("../components/AddJewels/components/preview.vue")['default']
 export const LazyResolutionCard: typeof import("../components/ResolutionCard/Card.vue")['default']
 export const LazyStaticContentFooter: typeof import("../components/StaticContent/Footer.vue")['default']
 export const LazyNuxtWelcome: typeof import("../node_modules/nuxt/dist/app/components/welcome")['default']

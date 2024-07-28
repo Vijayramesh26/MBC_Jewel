@@ -11,85 +11,140 @@
           <v-icon class="mx-1 mb-2">mdi-tag-plus</v-icon>Add Products
         </b>
       </v-layout>
-      <v-card elevation="0">
-        <v-row wrap lg-nowrap class="d-flex justify-center align-center">
-          <v-col lg="6" cols="12" >
-            <v-file-input
-              ref="fileInput"
-              accept="image/*"
-              style="display: none"
-              @change="onFileChange"
-            ></v-file-input>
-            <div @click="triggerFileInput">
-              <img
-                :src="imageUrl"
-                alt="Click to upload"
-                :width="$vuetify.display.mdAndDown ? '100%' : '90%'"
-              />
-            </div>
-          </v-col>
-          <v-col lg="6" cols="12">
-            <v-card class="py-5" elevation="0">
-              <v-row lg="2">
-                <v-text-field
-                  label="Jewels Title"
-                  placeholder="Jewels Title"
-                  class="mx-4"
-                  variant="outlined"
-                ></v-text-field
-              ></v-row>
-              <v-row lg="2">
-                <v-text-field
-                  type="number"
-                  label="Jewel Price"
-                  placeholder="Rs. 20000"
-                  class="mx-4"
-                  variant="outlined"
-                ></v-text-field>
-              </v-row>
-              <v-row lg="2">
-                <v-text-field
-                  label="Other Info"
-                  placeholder="Additional details"
-                  class="mx-4"
-                  variant="outlined"
-                ></v-text-field
-              ></v-row>
-              <v-row lg="2" class="d-flex justify-center">
-                <v-btn variant="outlined">Add Product</v-btn></v-row
-              >
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-card>
+      <v-row lg="2" class="d-flex justify-end pa-3">
+        <v-btn
+          color="amber"
+          @click="addRow"
+          class="text-capitalize"
+          v-if="
+            $vuetify.display.mdAndDown
+              ? addJewelArr.length >= 1
+                ? false
+                : true
+              : $vuetify.display.lgAndUp
+              ? addJewelArr.length >= 2
+                ? false
+                : true
+              : false
+          "
+          ><v-icon class="mx-2">mdi-cart-plus</v-icon>Add Row</v-btn
+        >
+      </v-row>
+      <v-row v-for="(addJewel, rowIndex) in addJewelArr" :key="rowIndex">
+        <v-col>
+          <v-card class="pa-4" elevation="0">
+            <v-btn >Remove Row</v-btn> 
+            <v-row>
+              <v-col>
+                <v-file-input
+                  :ref="'fileInput' + rowIndex"
+                  accept="image/*"
+                  style="display: none"
+                  @change="onFileChange(rowIndex, $event)"
+                ></v-file-input>
+                <div @click="triggerFileInput(rowIndex)">
+                  <img :src="addJewel.img" alt="Click to upload" width="60%" />
+                </div>
+              </v-col>
+              <v-col>
+                <v-row>
+                  <v-text-field
+                    label="Jewels Title"
+                    placeholder="Jewels Title"
+                    variant="outlined"
+                    density="comfortable"
+                    v-model="addJewel.name"
+                  ></v-text-field>
+                </v-row>
+                <v-row>
+                  <v-text-field
+                    type="number"
+                    label="Jewel Price"
+                    placeholder="Rs. 20000"
+                    v-model="addJewel.price"
+                    variant="outlined"
+                    density="comfortable"
+                  ></v-text-field>
+                </v-row>
+                <v-row>
+                  <v-col lg="6">
+                    <v-text-field
+                      class="mx-auto"
+                      label="Discount"
+                      v-model="addJewel.other"
+                      placeholder="Additional details"
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col lg="6">
+                    <v-text-field
+                      class="mx-auto"
+                      label="Charges"
+                      v-model="addJewel.other"
+                      placeholder="Additional details"
+                      variant="outlined"
+                      density="comfortable"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-col>
+              <v-divider></v-divider>
+            </v-row>
+          </v-card>
+        </v-col>
+      </v-row>
+      <div class="d-flex justify-center mt-4">
+        <v-btn variant="outlined">Add Product</v-btn>
+      </div>
     </v-card>
   </div>
 </template>
+
 <script>
 export default {
   data() {
     return {
-      imageUrl:
-        "https://tse3.mm.bing.net/th?id=OIP.IhiqRWFamp-enjV2csKdzwHaE8&pid=Api&P=0&h=220", // Default image URL
-      file: null,
+      defaultImageUrl:
+        "https://tse3.mm.bing.net/th?id=OIP.IhiqRWFamp-enjV2csKdzwHaE8&pid=Api&P=0&h=220",
+      addJewelArr: [],
     };
   },
   methods: {
-    // Method to trigger the file input dialog
-    triggerFileInput() {
-      this.$refs.fileInput.$el.querySelector("input").click();
+    triggerFileInput(index) {
+      this.$refs["fileInput" + index][0].click();
     },
-    // Method to handle the file change event
-    onFileChange(event) {
+    onFileChange(rowIndex, event) {
       const file = event.target.files[0];
       if (file) {
         const reader = new FileReader();
         reader.onload = (e) => {
-          this.imageUrl = e.target.result; // Update the image URL to the new image
+          this.addJewelArr[rowIndex].img = e.target.result;
         };
-        reader.readAsDataURL(file); // Read the new file as a data URL
+        reader.readAsDataURL(file);
       }
     },
+    addRow() {
+      this.addJewelArr.push(this.createAddJewel());
+    },
+    createAddJewel() {
+      return {
+        name: "",
+        price: 0,
+        other: "",
+        img: this.defaultImageUrl,
+      };
+    },
+    addProduct() {
+      console.log(this.addJewelArr);
+    },
+  },
+  mounted() {
+    this.addRow();
   },
 };
 </script>
+
+<style scoped>
+/* Add any custom styles here */
+</style>

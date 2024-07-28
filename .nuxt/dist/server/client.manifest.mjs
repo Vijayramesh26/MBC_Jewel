@@ -1,1 +1,1 @@
-export { default } from "file:///home/it-lap3/Documents/Personal/Project/MBC_Jewel/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
+export { default } from "file:///home/it-lap4/Music/swetha/WEB/MBC_Jewel/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
