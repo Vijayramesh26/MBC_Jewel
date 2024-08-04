@@ -10,32 +10,33 @@
         <b class="mt-2">
           <v-icon class="mx-1 mb-2">mdi-tag-plus</v-icon>Add Products
         </b>
-      </v-layout>
+      </v-layout> 
       <v-row lg="2" class="d-flex justify-end pa-3">
-        <v-btn
-          color="amber"
-          @click="addRow"
-          class="text-capitalize"
-          v-if="
-            $vuetify.display.mdAndDown
-              ? addJewelArr.length >= 1
-                ? false
-                : true
-              : $vuetify.display.lgAndUp
-              ? addJewelArr.length >= 2
-                ? false
-                : true
-              : false
-          "
+        <v-btn color="amber" @click="addRow" class="text-capitalize"  v-if="
+              $vuetify.display.mdAndDown
+                ? addJewelArr.length >= 1
+                  ? false
+                  : true
+                : $vuetify.display.lgAndUp
+                ? addJewelArr.length >= 4
+                  ? false
+                  : true
+                : false
+            "
           ><v-icon class="mx-2">mdi-cart-plus</v-icon>Add Row</v-btn
         >
       </v-row>
-      <v-row v-for="(addJewel, rowIndex) in addJewelArr" :key="rowIndex">
+
+      <!-- <v-row>
         <v-col>
+
+        </v-col>
+      </v-row> -->
+      <v-row wrap lg-nowrap>
+        <v-col v-for="(addJewel, rowIndex) in addJewelArr" :key="rowIndex" lg="6" cols="12">
           <v-card class="pa-4" elevation="0">
-            <v-btn >Remove Row</v-btn> 
             <v-row>
-              <v-col>
+              <v-col  >
                 <v-file-input
                   :ref="'fileInput' + rowIndex"
                   accept="image/*"
@@ -43,10 +44,11 @@
                   @change="onFileChange(rowIndex, $event)"
                 ></v-file-input>
                 <div @click="triggerFileInput(rowIndex)">
-                  <img :src="addJewel.img" alt="Click to upload" width="60%" />
+                  <img :src="addJewel.img" alt="Click to upload" width="100%" />
                 </div>
+                <!-- :width="$vuetify.display.mdAndDown?'100%':'60%'" -->
               </v-col>
-              <v-col>
+              <v-col >
                 <v-row>
                   <v-text-field
                     label="Jewels Title"
@@ -57,8 +59,7 @@
                   ></v-text-field>
                 </v-row>
                 <v-row>
-                  <v-text-field
-                    type="number"
+                  <v-text-field 
                     label="Jewel Price"
                     placeholder="Rs. 20000"
                     v-model="addJewel.price"
@@ -93,10 +94,12 @@
             </v-row>
           </v-card>
         </v-col>
+        <!-- <div class="d-flex justify-center mt-4"> -->
+          <!-- </div> -->
+        </v-row>
+        <v-row class="d-flex justify-center">
+        <v-btn variant="outlined" @click="addProduct">Add Product</v-btn>
       </v-row>
-      <div class="d-flex justify-center mt-4">
-        <v-btn variant="outlined">Add Product</v-btn>
-      </div>
     </v-card>
   </div>
 </template>

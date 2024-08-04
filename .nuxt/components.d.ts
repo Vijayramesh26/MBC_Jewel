@@ -4,7 +4,7 @@ type IslandComponent<T extends DefineComponent> = T & DefineComponent<{}, {refre
 interface _GlobalComponents {
       'AddJewelsMain': typeof import("../components/AddJewels/AddJewelsMain.vue")['default']
     'AddJewelsComponentsAddJewel': typeof import("../components/AddJewels/components/AddJewel.vue")['default']
-    'AddJewelsComponentsPreview': typeof import("../components/AddJewels/components/preview.vue")['default']
+    'AddJewelsComponentsPreviewImage': typeof import("../components/AddJewels/components/PreviewImage.vue")['default']
     'ResolutionCard': typeof import("../components/ResolutionCard/Card.vue")['default']
     'StaticContentFooter': typeof import("../components/StaticContent/Footer.vue")['default']
     'NuxtWelcome': typeof import("../node_modules/nuxt/dist/app/components/welcome")['default']
